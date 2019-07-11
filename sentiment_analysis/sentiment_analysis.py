@@ -25,7 +25,9 @@ import tensorflow as tf
 from collections import Counter
 import tqdm
 
-get_ipython().magic('matplotlib inline')
+os.environ['CUDA_VISIBLE_DEVICES']='2,3'
+
+#get_ipython().magic('matplotlib inline')
 
 
 # In[2]:
@@ -74,7 +76,7 @@ print("The min length of positive sentences: {}".format(np.min([len(sentence.spl
 c = Counter(pos_text.split()).most_common(100)
 print("Most common words in positive sentences: \n{}".format(c))
 
-# 校级文本统计
+# 消级文本统计
 print()
 print("-" * 20 + " NEGATIVE TEXT " + "-" * 20)
 # 分句
