@@ -25,7 +25,13 @@ import tensorflow as tf
 from collections import Counter
 import tqdm
 
-os.environ['CUDA_VISIBLE_DEVICES']='2,3'
+#os.environ['CUDA_VISIBLE_DEVICES']='2,3'
+
+os.environ["CUDA_VISIBLE_DEVICES"] = '3' #use GPU with ID=0
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.5 # maximun alloc gpu50% of MEM
+config.gpu_options.allow_growth = True #allocate dynamically
+
 
 #get_ipython().magic('matplotlib inline')
 
@@ -358,8 +364,7 @@ x_train, x_test, y_train, y_test = split_train_test(total_tokens, total_targets)
 
 # In[29]:
 
-
-def get_batch(x, y, batch_size=BATCH_SIZE, shuffle=True):
+def get_batch(x, y, batch_size=5, shuffle=True):   #BATCH_SIZE
     assert x.shape[0] == y.shape[0], print("error shape!")
     # shuffle
     if shuffle:
